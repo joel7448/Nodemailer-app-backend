@@ -62,4 +62,17 @@ router.get("/mailitems/:id",async function(req,res){
         res.status(500).json(err);
     }
 })
+
+router.delete("/mailitems/:id",async function(req,res){
+    console.log(req.params.id);
+try{
+    await Email.findByIdAndDelete({_id:req.params.id});
+
+res.status(200).json("Successfully deleted");
+}
+catch(err){
+    res.status(500).json(err);
+}
+
+})
 module.exports = router;
